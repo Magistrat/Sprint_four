@@ -28,6 +28,14 @@ public class FaqPageModel {
     public void openAllArrowsAndCheck(){
         for (WebElement arrow: getListElementsWithArrows()) {
             arrow.click();
+
+            try{
+                // Для дебага и просмотра взаимодействия
+                Thread.sleep(10);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+
             new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(openAnswer));
         }
     }
