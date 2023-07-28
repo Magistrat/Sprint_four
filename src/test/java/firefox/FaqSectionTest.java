@@ -1,7 +1,7 @@
 package firefox;
 
 import org.junit.Test;
-import page_object_model.FaqPageModel;
+import pages.FaqPageModel;
 
 public class FaqSectionTest extends BaseFirefoxTest {
 
