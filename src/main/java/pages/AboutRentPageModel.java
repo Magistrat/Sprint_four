@@ -11,13 +11,20 @@ import static org.hamcrest.core.StringContains.containsString;
 public class AboutRentPageModel {
     private final WebDriver driver;
 
-    // Поле ввода Дата заказа
+    // Поле ввода даты для заказа
     private final By fieldDateOrder = By.xpath("//input[@placeholder=\"* Когда привезти самокат\"]");
-    // Строка для создания Локатора Поиска дня в календаре
-    private final String locatorStringFindDay = ".//div[@class=\"react-datepicker__month\"]//div[text()=\"%s\"]";
+    // Метод для создания Локатора (объекта By) - Поиска дня в календаре
+    private By getLocatorDayForCalendar(String day){
+        String locatorDay = String.format(".//div[@class=\"react-datepicker__month\"]//div[text()=\"%s\"]", day);
+        return By.xpath(locatorDay);
+    }
+    // Поле срока аренды
     private final By timeIntervalOrder = By.className("Dropdown-control");
-    // Строка для создания Локатора Ответа
-    private final String locatorStringFindInterval = ".//div[@class=\"Dropdown-option\" and text()=\"%s\"]";
+    // Метод для создания Локатора (объекта By) - Элемента для выбора срока аренды
+    private By getLocatorRentInterval(String timeInterval){
+        String locatorRentInterval = String.format(".//div[@class=\"Dropdown-option\" and text()=\"%s\"]", timeInterval);
+        return By.xpath(locatorRentInterval);
+    }
     // Поле ввода Комментаря для заказа
     private final By orderMessage = By.xpath(".//input[@placeholder=\"Комментарий для курьера\"]");
     // Кнопка Далее
@@ -43,17 +50,13 @@ public class AboutRentPageModel {
     }
 
     public void selectTimeInterval(String timeInterval){
-        String locatorInterval = String.format(locatorStringFindInterval, timeInterval);
-
         driver.findElement(timeIntervalOrder).click();
-        driver.findElement(By.xpath(locatorInterval)).click();
+        driver.findElement(getLocatorRentInterval(timeInterval)).click();
     }
 
     public void selectDateOnCalendar(String day){
-        String locatorDay = String.format(locatorStringFindDay, day);
-
         driver.findElement(fieldDateOrder).click();
-        driver.findElement(By.xpath(locatorDay)).click();
+        driver.findElement(getLocatorDayForCalendar(day)).click();
     }
 
     public void writeInformationAboutRent(String day, String timeInterval, String color, String message){
