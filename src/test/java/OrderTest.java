@@ -1,5 +1,3 @@
-package chrome;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,7 +5,7 @@ import pages.MainPageModel;
 import pages.OrderUserInfoPageModel;
 
 @RunWith(Parameterized.class)
-public class OrderTest extends BaseChromeTest{
+public class OrderTest extends BaseTest {
 
     private final String firstName;
     private final String lastName;

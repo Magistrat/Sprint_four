@@ -1,13 +1,10 @@
-package chrome;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.FaqPageModel;
-import pages.OrderUserInfoPageModel;
 
 @RunWith(Parameterized.class)
-public class FaqSectionTest extends BaseChromeTest{
+public class FaqSectionTest extends BaseTest {
     private final String question;
     private final String answer;
 
