@@ -11,16 +11,24 @@ import static org.hamcrest.core.StringContains.containsString;
 public class AboutRentPageModel {
     private WebDriver driver;
 
+    // Поле ввода Дата заказа
     private final By fieldDateOrder = By.xpath("//input[@placeholder=\"* Когда привезти самокат\"]");
+    // Строка для создания Локатора Поиска дня в календаре
     private final String locatorStringFindDay = ".//div[@class=\"react-datepicker__month\"]//div[text()=\"%s\"]";
     private final By timeIntervalOrder = By.className("Dropdown-control");
     // Строка для создания Локатора Ответа
     private final String locatorStringFindInterval = ".//div[@class=\"Dropdown-option\" and text()=\"%s\"]";
+    // Поле ввода Комментаря для заказа
     private final By orderMessage = By.xpath(".//input[@placeholder=\"Комментарий для курьера\"]");
+    // Кнопка Далее
     private final By orderNextButton = By.xpath(".//div[@class=\"Order_Buttons__1xGrp\"]//button[text() =\"Заказать\"]");
+    // Кнопка Да (подтверждение заказа)
     private final By orderConfirmYesButton = By.xpath(".//button[text() = \"Да\"]");
+    // Окно с информацией подтверждения заказа
     private final By successfulWindow = By.className("Order_Modal__YZ-d3");
+    // Текст о подтвержденном заказе
     private final By successfulMessage = By.className("Order_ModalHeader__3FDaJ");
+
     public AboutRentPageModel(WebDriver driver){
         this.driver = driver;
     }

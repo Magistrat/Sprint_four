@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 
 public class OrderUserInfoPageModel {
     private WebDriver driver;
-    // Кнопка Далее (для потверждения заказа)
-    private final By nextButtonConfirmOrder = By.xpath(".//button[text() = \"Далее\"]");
 
+    // Кнопка Далее (для перехеда на ввод дополнительной информации)
+    private final By nextButtonConfirmOrder = By.xpath(".//button[text() = \"Далее\"]");
     // Поле Имя
     private final By fieldFirstName = By.xpath(".//input[@type = \"text\" and @placeholder = \"* Имя\"]");
     // Поле Фамилия
@@ -20,21 +20,23 @@ public class OrderUserInfoPageModel {
     private final By fieldPhone = By.xpath(".//input[@type = \"text\" and @placeholder = \"* Телефон: на него позвонит курьер\"]");
     // Поле Выбора станции Метро
     private final By fieldMetroStation = By.xpath("//input[@class= \"select-search__input\"]");
-
+    // Строка для создания Локатора определенной станции Метро
     private final String locatorStringForSelectMetro = ".//div[@class=\"Order_Text__2broi\" and text()=\"%s\"]";
-
 
     public OrderUserInfoPageModel(WebDriver driver){
         this.driver = driver;
     }
+
     public void writeFirstNameOnField(String name){
         driver.findElement(fieldFirstName).clear();
         driver.findElement(fieldFirstName).sendKeys(name);
     }
+
     public void writeLastNameOnField(String lastName){
         driver.findElement(fieldLastName).clear();
         driver.findElement(fieldLastName).sendKeys(lastName);
     }
+
     public void writeAddressOnField(String address){
         driver.findElement(fieldAddress).clear();
         driver.findElement(fieldAddress).sendKeys(address);
@@ -53,8 +55,6 @@ public class OrderUserInfoPageModel {
         driver.findElement(By.xpath(metroLocator)).click();
     }
 
-
-
     public void writeUserInOrder(String firstName, String lastName, String address, String metroStation, String phone){
         writeFirstNameOnField(firstName);
         writeLastNameOnField(lastName);
@@ -64,5 +64,4 @@ public class OrderUserInfoPageModel {
 
         driver.findElement(nextButtonConfirmOrder).click();
     }
-
 }

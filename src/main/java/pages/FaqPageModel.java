@@ -10,12 +10,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FaqPageModel {
     private WebDriver driver;
+
     // Локатор для проверки загрузки страницы
     private final By pageIsLoaded = By.cssSelector(".Home_BluePrint__TGX2n img");
     // Строка для создания Локатора Вопроса
     private final String locatorStringFindQuestion = ".//div[contains(@id, \"accordion__heading\") and text()=\"%s\"]";
     // Строка для создания Локатора Ответа
     private final String locatorStringFindAnswer = ".//div[@class=\"accordion__panel\"]//p[text()=\"%s\"]";
+
     public FaqPageModel(WebDriver driver){
         this.driver = driver;
     }

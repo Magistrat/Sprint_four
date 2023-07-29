@@ -7,13 +7,11 @@ import pages.OrderUserInfoPageModel;
 
 @RunWith(Parameterized.class)
 public class OrderTest extends BaseTest {
-
     private final String firstName;
     private final String lastName;
     private final String address;
     private final String metroStation;
     private final String phone;
-
     private final String day;
     private final String timeInterval;
     private final String color;
@@ -25,7 +23,6 @@ public class OrderTest extends BaseTest {
         this.address = address;
         this.metroStation = metroStation;
         this.phone = phone;
-
         this.day = day;
         this.timeInterval = timeInterval;
         this.color = color;
