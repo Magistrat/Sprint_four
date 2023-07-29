@@ -14,19 +14,19 @@ public class OrderTest extends BaseTest {
     private final String metroStation;
     private final String phone;
 
-    private final String dateTime;
+    private final String day;
     private final String timeInterval;
     private final String color;
     private final String message;
 
-    public OrderTest(String firstName, String lastName, String address, String metroStation, String phone, String dateTime, String timeInterval, String color, String message){
+    public OrderTest(String firstName, String lastName, String address, String metroStation, String phone, String day, String timeInterval, String color, String message){
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.metroStation = metroStation;
         this.phone = phone;
 
-        this.dateTime = dateTime;
+        this.day = day;
         this.timeInterval = timeInterval;
         this.color = color;
         this.message = message;
@@ -35,8 +35,8 @@ public class OrderTest extends BaseTest {
     @Parameterized.Parameters
     public static Object[][] getTestData(){
         return new Object[][] {
-                {"Николай", "Елецкий", "Пушкина д 19", "Сокольники", "88182470008", "---", "сутки", "black", "2 подъезд"},
-//                {"Юлия", "Черенкова", "Мира д 185", "Лубянка", "89148659484", "---", "трое сутки", "gray", "Красный дом возле магазина"}
+//                {"Николай", "Елецкий", "Пушкина д 19", "Сокольники", "88182470008", "10", "сутки", "black", "2 подъезд"},
+                {"Юлия", "Черенкова", "Мира д 185", "Лубянка", "89148659484", "20", "трое сутки", "gray", "Красный дом возле магазина"}
         };
     }
 
@@ -49,8 +49,8 @@ public class OrderTest extends BaseTest {
         orderUserInfoPage.writeUserInOrder(firstName, lastName, address, metroStation, phone);
 
         AboutRentPageModel aboutRentPage = new AboutRentPageModel(driver);
-        aboutRentPage.writeInformationAboutRent(dateTime, timeInterval, color, message);
-
-        System.out.println("123");
+        aboutRentPage.writeInformationAboutRent(day, timeInterval, color, message);
+        aboutRentPage.finallyConfirmOrder();
+        aboutRentPage.checkSuccessfulWindow();
     }
 }
