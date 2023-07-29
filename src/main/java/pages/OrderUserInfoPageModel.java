@@ -27,31 +27,25 @@ public class OrderUserInfoPageModel {
         this.driver = driver;
     }
     public void writeFirstNameOnField(String name){
-        WebElement element = driver.findElement(fieldFirstName);
-        element.clear();
-        element.sendKeys(name);
+        driver.findElement(fieldFirstName).clear();
+        driver.findElement(fieldFirstName).sendKeys(name);
     }
     public void writeLastNameOnField(String lastName){
-        WebElement element = driver.findElement(fieldLastName);
-        element.clear();
-        element.sendKeys(lastName);
+        driver.findElement(fieldLastName).clear();
+        driver.findElement(fieldLastName).sendKeys(lastName);
     }
     public void writeAddressOnField(String address){
-        WebElement element = driver.findElement(fieldAddress);
-        element.clear();
-        element.sendKeys(address);
+        driver.findElement(fieldAddress).clear();
+        driver.findElement(fieldAddress).sendKeys(address);
     }
 
     public void writePhoneOnField(String phone){
-        WebElement element = driver.findElement(fieldPhone);
-        element.clear();
-        element.sendKeys(phone);
+        driver.findElement(fieldPhone).clear();
+        driver.findElement(fieldPhone).sendKeys(phone);
     }
 
     public void selectMetroStation(String stationName){
-        WebElement element = driver.findElement(fieldMetroStation);
-        element.clear();
-        element.click();
+        driver.findElement(fieldMetroStation).click();
 
         String metroLocator = String.format(locatorStringForSelectMetro, stationName);
         driver.findElement(By.xpath(metroLocator)).click();

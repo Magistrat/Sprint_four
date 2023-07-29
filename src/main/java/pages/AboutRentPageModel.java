@@ -12,16 +12,15 @@ public class AboutRentPageModel {
     private final By colorBlackInOrder = By.id("black");
     private final By colorGreyInOrder = By.id("grey");
     private final By orderMessage = By.xpath(".//input[placeholder=\"Комментарий для курьера\"]");
-    private final By orderConfirm = By.xpath(".//button[@text=\"Заказать\"]");
+    private final By orderNextButton = By.xpath(".//button[@text=\"Заказать\"]");
 
     public AboutRentPageModel(WebDriver driver){
         this.driver = driver;
     }
 
     public void writeComment(String message){
-        WebElement element = driver.findElement(orderMessage);
-        element.clear();
-        element.sendKeys(message);
+        driver.findElement(orderMessage).clear();
+        driver.findElement(orderMessage).sendKeys(message);
     }
 
 

@@ -27,7 +27,6 @@ public class FaqPageModel {
 
     public void openArrowAndCheck(String question, String answer){
         String questionLocator = String.format(locatorStringFindQuestion, question);
-
         checkPageIsLoad();
 
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath(questionLocator)));
