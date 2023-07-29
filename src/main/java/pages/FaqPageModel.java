@@ -37,10 +37,10 @@ public class FaqPageModel {
         );
         driver.findElement(By.xpath(questionLocator)).click();
 
-        String questionAnswer = String.format(locatorStringFindAnswer, answer);
+        String answerLocator = String.format(locatorStringFindAnswer, answer);
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(questionAnswer)
+                        By.xpath(answerLocator)
                 )
         );
     }

@@ -9,9 +9,9 @@ public class AboutRentPageModel {
 
     private final By fieldDateOrder = By.xpath("//input[@placeholder=\"* Когда привезти самокат\"]");
     private final By timeIntervalOrder = By.className("Dropdown-control");
-    private final By colorBlackInOrder = By.id("black");
-    private final By colorGreyInOrder = By.id("grey");
-    private final By orderMessage = By.xpath(".//input[placeholder=\"Комментарий для курьера\"]");
+    // Строка для создания Локатора Ответа
+    private final String locatorStringFindInterval = ".//div[@class=\"Dropdown-option\" and text()=\"%s\"]";
+    private final By orderMessage = By.xpath(".//input[@placeholder=\"Комментарий для курьера\"]");
     private final By orderNextButton = By.xpath(".//button[@text=\"Заказать\"]");
 
     public AboutRentPageModel(WebDriver driver){
@@ -23,7 +23,22 @@ public class AboutRentPageModel {
         driver.findElement(orderMessage).sendKeys(message);
     }
 
+    public void selectColor(String color){
+        driver.findElement(By.id(color)).click();
+    }
+
+    public void selectTimeInterval(String timeInterval){
+        String locatorInterval = String.format(locatorStringFindInterval, timeInterval);
+
+        driver.findElement(timeIntervalOrder).click();
+        driver.findElement(By.xpath(locatorInterval)).click();
+    }
 
 
+    public void writeInformationAboutRent(String dateTime, String timeInterval, String color, String message){
+        selectTimeInterval(timeInterval);
+        selectColor(color);
+        writeComment(message);
+    }
 
 }

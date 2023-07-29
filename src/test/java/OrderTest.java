@@ -1,6 +1,7 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import pages.AboutRentPageModel;
 import pages.MainPageModel;
 import pages.OrderUserInfoPageModel;
 
@@ -45,18 +46,11 @@ public class OrderTest extends BaseTest {
         new MainPageModel(driver).clickForOrderInHeader();
 
         OrderUserInfoPageModel orderUserInfoPage = new OrderUserInfoPageModel(driver);
-
         orderUserInfoPage.writeUserInOrder(firstName, lastName, address, metroStation, phone);
 
-        System.out.println("100");
+        AboutRentPageModel aboutRentPage = new AboutRentPageModel(driver);
+        aboutRentPage.writeInformationAboutRent(dateTime, timeInterval, color, message);
 
-
-        try{
-            // Для дебага и просмотра взаимодействия
-            Thread.sleep(10);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
+        System.out.println("123");
     }
-
 }
