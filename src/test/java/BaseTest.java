@@ -13,7 +13,6 @@ public class BaseTest {
     public void setUp(){
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--remote-allow-origins=*");
-//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\k.nistratov\\chromedriver.exe");
 //        driver = new ChromeDriver(options);
 
         FirefoxOptions options = new FirefoxOptions();
