@@ -12,10 +12,16 @@ public class FaqPageModel {
 
     // Локатор для проверки загрузки страницы
     private final By pageIsLoaded = By.cssSelector(".Home_BluePrint__TGX2n img");
-    // Строка для создания Локатора Вопроса
-    private final String locatorStringFindQuestion = ".//div[contains(@id, \"accordion__heading\") and text()=\"%s\"]";
-    // Строка для создания Локатора Ответа
-    private final String locatorStringFindAnswer = ".//div[@class=\"accordion__panel\"]//p[text()=\"%s\"]";
+    // Метод для создания Локатора Вопроса (объекта By)
+    private By getLocatorQuestion(String question){
+        String locatorQuestion = String.format(".//div[contains(@id, \"accordion__heading\") and text()=\"%s\"]", question);
+        return By.xpath(locatorQuestion);
+    }
+    // Метод для создания Локатора Ответа
+    private By getLocatorAnswer(String answer){
+        String locatorAnswer = String.format(".//div[@class=\"accordion__panel\"]//p[text()=\"%s\"]", answer);
+        return By.xpath(locatorAnswer);
+    }
 
     public FaqPageModel(WebDriver driver){
         this.driver = driver;
@@ -27,21 +33,19 @@ public class FaqPageModel {
     }
 
     public void openArrowAndCheck(String question, String answer){
-        String questionLocator = String.format(locatorStringFindQuestion, question);
         checkPageIsLoad();
 
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath(questionLocator)));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(getLocatorQuestion(question)));
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(questionLocator)
+                        getLocatorQuestion(question)
                 )
         );
-        driver.findElement(By.xpath(questionLocator)).click();
+        driver.findElement(getLocatorQuestion(question)).click();
 
-        String answerLocator = String.format(locatorStringFindAnswer, answer);
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(answerLocator)
+                        getLocatorAnswer(answer)
                 )
         );
     }
