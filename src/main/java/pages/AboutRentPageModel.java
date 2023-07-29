@@ -2,9 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.StringContains.containsString;
 
 public class AboutRentPageModel {
     private WebDriver driver;
@@ -18,7 +20,7 @@ public class AboutRentPageModel {
     private final By orderNextButton = By.xpath(".//div[@class=\"Order_Buttons__1xGrp\"]//button[text() =\"Заказать\"]");
     private final By orderConfirmYesButton = By.xpath(".//button[text() = \"Да\"]");
     private final By successfulWindow = By.className("Order_Modal__YZ-d3");
-
+    private final By successfulMessage = By.className("Order_ModalHeader__3FDaJ");
     public AboutRentPageModel(WebDriver driver){
         this.driver = driver;
     }
@@ -64,6 +66,9 @@ public class AboutRentPageModel {
                         successfulWindow
                 )
         );
+
+        String messageFromWindow = driver.findElement(successfulMessage).getText();
+        assertThat(messageFromWindow, containsString("Заказ оформлен"));
     }
 
 }
