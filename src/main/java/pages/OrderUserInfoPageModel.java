@@ -19,8 +19,11 @@ public class OrderUserInfoPageModel {
     private final By fieldPhone = By.xpath(".//input[@type = \"text\" and @placeholder = \"* Телефон: на него позвонит курьер\"]");
     // Поле Выбора станции Метро
     private final By fieldMetroStation = By.xpath("//input[@class= \"select-search__input\"]");
-    // Строка для создания Локатора определенной станции Метро
-    private final String locatorStringForSelectMetro = ".//div[@class=\"Order_Text__2broi\" and text()=\"%s\"]";
+    // Метод для создания Локатора станции Метро в выпадающем списке (Объект By)
+    private By getLocatorSelectMetro(String stationName){
+        String locatorStation = String.format(".//div[@class=\"Order_Text__2broi\" and text()=\"%s\"]", stationName);
+        return By.xpath(locatorStation);
+    }
 
     public OrderUserInfoPageModel(WebDriver driver){
         this.driver = driver;
@@ -49,9 +52,8 @@ public class OrderUserInfoPageModel {
     public void selectMetroStation(String stationName){
         driver.findElement(fieldMetroStation).click();
 
-        String metroLocator = String.format(locatorStringForSelectMetro, stationName);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath(metroLocator)));
-        driver.findElement(By.xpath(metroLocator)).click();
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(getLocatorSelectMetro(stationName)));
+        driver.findElement(getLocatorSelectMetro(stationName)).click();
     }
 
     public void writeUserInOrder(String firstName, String lastName, String address, String metroStation, String phone){
