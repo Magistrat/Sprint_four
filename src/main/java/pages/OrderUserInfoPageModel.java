@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -48,6 +49,7 @@ public class OrderUserInfoPageModel {
         driver.findElement(fieldMetroStation).click();
 
         String metroLocator = String.format(locatorStringForSelectMetro, stationName);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath(metroLocator)));
         driver.findElement(By.xpath(metroLocator)).click();
     }
 

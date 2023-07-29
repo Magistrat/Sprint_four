@@ -35,8 +35,8 @@ public class OrderTest extends BaseTest {
     @Parameterized.Parameters
     public static Object[][] getTestData(){
         return new Object[][] {
-//                {"Николай", "Елецкий", "Пушкина д 19", "Сокольники", "88182470008", "10", "сутки", "black", "2 подъезд"},
-                {"Юлия", "Черенкова", "Мира д 185", "Лубянка", "89148659484", "20", "трое сутки", "gray", "Красный дом возле магазина"}
+                {"Николай", "Елецкий", "Пушкина д 19", "Сокольники", "88182470008", "10", "сутки", "black", "2 подъезд"},
+                {"Юлия", "Черенкова", "Мира д 185", "Лубянка", "89148659484", "20", "трое суток", "grey", "Красный дом возле магазина"}
         };
     }
 
@@ -44,6 +44,19 @@ public class OrderTest extends BaseTest {
     @Test
     public void orderFromHead(){
         new MainPageModel(driver).clickForOrderInHeader();
+
+        OrderUserInfoPageModel orderUserInfoPage = new OrderUserInfoPageModel(driver);
+        orderUserInfoPage.writeUserInOrder(firstName, lastName, address, metroStation, phone);
+
+        AboutRentPageModel aboutRentPage = new AboutRentPageModel(driver);
+        aboutRentPage.writeInformationAboutRent(day, timeInterval, color, message);
+        aboutRentPage.finallyConfirmOrder();
+        aboutRentPage.checkSuccessfulWindow();
+    }
+
+    @Test
+    public void orderFromMiddleBody(){
+        new MainPageModel(driver).clickForOrderInMiddleBody();
 
         OrderUserInfoPageModel orderUserInfoPage = new OrderUserInfoPageModel(driver);
         orderUserInfoPage.writeUserInOrder(firstName, lastName, address, metroStation, phone);
