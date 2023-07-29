@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPageModel {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     // Локатор Кнопки заказать из заголовка
     private final By orderButtonFromHeader = By.xpath(".//button[text()=\"Заказать\" and not(contains(@class, \"Button_Middle__1CSJM\"))]");

@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringContains.containsString;
 
 public class AboutRentPageModel {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     // Поле ввода Дата заказа
     private final By fieldDateOrder = By.xpath("//input[@placeholder=\"* Когда привезти самокат\"]");

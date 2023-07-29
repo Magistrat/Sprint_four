@@ -3,10 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class OrderUserInfoPageModel {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     // Кнопка Далее (для перехеда на ввод дополнительной информации)
     private final By nextButtonConfirmOrder = By.xpath(".//button[text() = \"Далее\"]");
